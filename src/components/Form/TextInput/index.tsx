@@ -1,4 +1,6 @@
 import { Slot } from '@radix-ui/react-slot'
+import { clsx } from 'clsx'
+
 import {
   ForwardRefRenderFunction,
   InputHTMLAttributes,
@@ -40,7 +42,10 @@ const TextInputBase: ForwardRefRenderFunction<
   return (
     <input
       ref={ref}
-      className="bg-transparent flex-1 text-gray-100 text-xs placeholder:text-gray-400 outline-none focus:shadow-none"
+      className={clsx(
+        'bg-transparent flex-1 text-gray-100 text-xs placeholder:text-gray-400 outline-none focus:shadow-none',
+        props.className,
+      )}
       {...props}
     />
   )
