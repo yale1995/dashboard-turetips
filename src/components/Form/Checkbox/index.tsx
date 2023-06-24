@@ -2,12 +2,17 @@
 
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
 import { Check } from 'phosphor-react'
+import { ForwardRefRenderFunction, forwardRef } from 'react'
 
 export interface CheckboxProps extends CheckboxPrimitive.CheckboxProps {}
 
-export function Checkbox(props: CheckboxProps) {
+const CheckboxBase: ForwardRefRenderFunction<
+  HTMLButtonElement,
+  CheckboxProps
+> = (props, ref) => {
   return (
     <CheckboxPrimitive.Root
+      ref={ref}
       className="w-6 h-6 p-[2px] bg-gray-800 rounded"
       {...props}
     >
@@ -17,3 +22,5 @@ export function Checkbox(props: CheckboxProps) {
     </CheckboxPrimitive.Root>
   )
 }
+
+export const Checkbox = forwardRef(CheckboxBase)
