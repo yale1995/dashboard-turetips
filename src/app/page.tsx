@@ -37,7 +37,7 @@ export default function SignIn() {
               <Lock />
             </TextInput.Icon>
             <TextInput.Input
-              id="email"
+              id="password"
               type="password"
               placeholder="**********"
             />
@@ -45,7 +45,7 @@ export default function SignIn() {
         </label>
 
         <label htmlFor="remember" className="flex items-center gap-2">
-          <Checkbox id="remember" />
+          <Checkbox id="remember" name="remember" />
           <Paragraph size="sm" className="text-gray-200">
             Lembrar de mim por 30 dias
           </Paragraph>
