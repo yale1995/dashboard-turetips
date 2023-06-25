@@ -1,2 +1,9 @@
 'use client'
-export { Envelope, Lock } from 'phosphor-react'
+export {
+  Envelope,
+  Lock,
+  MagnifyingGlass,
+  DotsNine,
+  Users,
+  UserList,
+} from 'phosphor-react'

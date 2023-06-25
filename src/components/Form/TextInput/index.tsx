@@ -1,5 +1,12 @@
 import { Slot } from '@radix-ui/react-slot'
-import { InputHTMLAttributes, ReactNode } from 'react'
+import { clsx } from 'clsx'
+
+import {
+  ForwardRefRenderFunction,
+  InputHTMLAttributes,
+  ReactNode,
+  forwardRef,
+} from 'react'
 
 export interface TextInputRootProps {
   children: ReactNode
@@ -28,14 +35,23 @@ TextInputIcon.displayName = 'TextInput.Icon'
 export interface TextInputInputProps
   extends InputHTMLAttributes<HTMLInputElement> {}
 
-export function TextInputInput(props: TextInputInputProps) {
+const TextInputBase: ForwardRefRenderFunction<
+  HTMLInputElement,
+  TextInputInputProps
+> = (props, ref) => {
   return (
     <input
-      className="bg-transparent flex-1 text-gray-100 text-xs placeholder:text-gray-400 outline-none focus:shadow-none"
+      ref={ref}
+      className={clsx(
+        'bg-transparent flex-1 text-gray-100 text-xs placeholder:text-gray-400 outline-none focus:shadow-none',
+        props.className,
+      )}
       {...props}
     />
   )
 }
+
+const TextInputInput = forwardRef(TextInputBase)
 
 TextInputInput.displayName = 'TextInput.Input'
 
