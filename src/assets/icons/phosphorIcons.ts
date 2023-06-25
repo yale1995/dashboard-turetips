@@ -6,4 +6,5 @@ export {
   DotsNine,
   Users,
   UserList,
+  X,
 } from 'phosphor-react'
