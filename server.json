@@ -1,0 +1,29 @@
+{
+    "clients": {
+        "data": [
+            {
+                "id": 1,
+                "firstName": "Keko",
+                "lastName": "Nunes",
+                "email": "keko@gmail.com",
+                "phoneNumber": "+5584999999999",
+                "createdAt": "2023-06-26T13:59:56.266Z",
+                "updatedAt": "2023-06-26T13:59:56.266Z",
+                "deletedAt": null,
+                "__entity": "Client"
+            },
+            {
+                "id": 2,
+                "firstName": "Matheus",
+                "lastName": "Lewandovsk",
+                "email": "lewandvsk@gmail.com",
+                "phoneNumber": "+5584999999999",
+                "createdAt": "2023-06-26T14:03:30.116Z",
+                "updatedAt": "2023-06-26T14:03:30.116Z",
+                "deletedAt": null,
+                "__entity": "Client"
+            }
+        ],
+        "hasNextPage": false
+    }
+  }
