@@ -145,7 +145,7 @@ export function AddNewClientForm() {
         </label>
       </div>
       <div className="w-1/4 ml-auto py-5">
-        <Button type="submit">Cadastrar</Button>
+        <Button type="submit">Cadastrar novo investidor</Button>
       </div>
     </form>
   )
