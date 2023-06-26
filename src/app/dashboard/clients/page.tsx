@@ -3,7 +3,7 @@ import { Button } from '@/components/Form/Button'
 
 export default function ClientList() {
   return (
-    <div className="flex-1">
+    <div>
       <Heading size="lg">Meus clientes</Heading>
       <main className="w-full mx-auto text-gray-100">
         <table className="w-full border-collapse border-spacing-x-0 border-spacing-y-2 mt-6 bg-gray-800">
