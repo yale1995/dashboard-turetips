@@ -9,4 +9,5 @@ export {
   X,
   CaretDown,
   Check,
+  TrendUp,
 } from 'phosphor-react'
