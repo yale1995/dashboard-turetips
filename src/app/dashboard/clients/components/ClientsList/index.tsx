@@ -17,7 +17,7 @@ export async function ClientsList() {
   const response = await api.get('/clients', {
     headers: {
       Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6eyJpZCI6MiwibmFtZSI6IlVzZXIiLCJfX2VudGl0eSI6IlJvbGUifSwiaWF0IjoxNjg3ODAwMjQ2LCJleHAiOjE2ODc4ODY2NDZ9.O0DR06hRRWgDRn9dUNsZZU5iW-JSLgJd7ytq-kvv9ds',
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6eyJpZCI6MiwibmFtZSI6IlVzZXIiLCJfX2VudGl0eSI6IlJvbGUifSwiaWF0IjoxNjg3ODE4MzI5LCJleHAiOjE2ODc5MDQ3Mjl9.up_U12I41d4gHbfQN0b4seIULbAKzoCWuj97ro2654I',
     },
   })
 
