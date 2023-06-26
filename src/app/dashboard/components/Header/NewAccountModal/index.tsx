@@ -1,8 +1,10 @@
+import * as Dialog from '@radix-ui/react-dialog'
+
 import { Users, X } from '@/assets/icons/phosphorIcons'
 import { Button } from '@/components/Form/Button'
 import { TextInput } from '@/components/Form/TextInput'
 import { Paragraph } from '@/components/Text/Paragraph'
-import * as Dialog from '@radix-ui/react-dialog'
+import { SelectInput, SelectItem } from '@/components/Form/SelectInput'
 
 export function NewAccountModal() {
   return (
@@ -16,22 +18,17 @@ export function NewAccountModal() {
         <Dialog.Close className="absolute bg-transparent border-0 top-6 right-6">
           <X className="text-gray-300" />
         </Dialog.Close>
-        <Dialog.Description>
+        <Dialog.Description asChild>
           <form className="py-4">
             <label htmlFor="ownerAccount" className="">
               <Paragraph size="lg" className="py-4 block">
-                Nome dono da conta:
+                Selecione o investidor
               </Paragraph>
-              <TextInput.Root>
-                <TextInput.Icon>
-                  <Users />
-                </TextInput.Icon>
-                <TextInput.Input
-                  type="text"
-                  id="ownerAccount"
-                  name="ownerAccoutn"
-                />
-              </TextInput.Root>
+              <SelectInput>
+                <SelectItem value="keko">Keko</SelectItem>
+                <SelectItem value="foca">Foca</SelectItem>
+                <SelectItem value="levandowisk">Levandowisk</SelectItem>
+              </SelectInput>
             </label>
 
             <div className="flex gap-4">
@@ -43,7 +40,12 @@ export function NewAccountModal() {
                   <TextInput.Icon>
                     <Users />
                   </TextInput.Icon>
-                  <TextInput.Input type="text" id="login" name="login" />
+                  <TextInput.Input
+                    type="text"
+                    id="login"
+                    name="login"
+                    placeholder="login123"
+                  />
                 </TextInput.Root>
               </label>
 
