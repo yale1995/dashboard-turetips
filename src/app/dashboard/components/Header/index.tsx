@@ -30,9 +30,9 @@ export function Header() {
         <div className="flex items-center gap-4">
           <div className="flex gap-4 border-r-2 pr-10">
             <Dialog.Root>
-              <Dialog.Trigger>
-                <Users
-                  size={24}
+              <Dialog.Trigger title="Adicionar uma nova conta">
+                <UserList
+                  size={22}
                   className="text-gray-300 hover:text-indigo-500"
                 />
               </Dialog.Trigger>
@@ -41,8 +41,8 @@ export function Header() {
             </Dialog.Root>
 
             <button>
-              <UserList
-                size={24}
+              <Users
+                size={22}
                 className="text-gray-300 hover:text-indigo-500"
               />
             </button>
