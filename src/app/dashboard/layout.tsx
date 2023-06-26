@@ -12,7 +12,7 @@ export default function DashboadLayout({ children }: DashboardLayoutProps) {
       <Header />
       <div className="flex gap-10 px-4">
         <Sidebar />
-        {children}
+        <div className="flex-1">{children}</div>
       </div>
     </div>
   )
