@@ -1,6 +1,6 @@
 import { Logo } from '../components/Logo'
 import { Paragraph } from '../components/Text/Paragraph'
-import { FormSignIn } from './components/FormSignIn'
+import { SignInForm } from './components/SignInForm'
 
 export default function SignIn() {
   return (
@@ -12,7 +12,7 @@ export default function SignIn() {
         </Paragraph>
       </header>
 
-      <FormSignIn />
+      <SignInForm />
 
       <footer className="flex flex-col items-center gap-4 mt-8">
         <Paragraph asChild size="md">
