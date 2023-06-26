@@ -23,7 +23,7 @@ export function SelectInput({ children, ...props }: SelectInputProps) {
       </Select.Trigger>
 
       <Select.Portal>
-        <Select.Content className="overflow-hidden bg-gray-300 rounded-md">
+        <Select.Content className="overflow-hidden bg-gray-500 rounded-md">
           <Select.Viewport className="p-2">{children}</Select.Viewport>
           <Select.Arrow />
         </Select.Content>
@@ -43,7 +43,7 @@ const SelectItemBase: ForwardRefRenderFunction<
   return (
     <Select.Item
       ref={ref}
-      className="text-sm text-gray-900 rounded-sm flex p-2 relative select-none items-center gap-2 focus:border-none focus:outline-none"
+      className="text-sm text-gray-100 rounded-sm flex p-2 relative select-none items-center gap-2 focus:border-none focus:outline-none"
       {...props}
     >
       <Select.ItemText>{children}</Select.ItemText>
