@@ -3,7 +3,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 
 import { MagnifyingGlass, Users, UserList } from '@/assets/icons/phosphorIcons'
 import { TextInput } from '@/components/Form/TextInput'
-import { Avatar } from '@/components/Header/Avatar'
+import { Avatar } from '@/app/dashboard/components/Header/Avatar'
 import { Logo } from '@/components/Logo'
 import { Heading } from '@/components/Text/Heading'
 import { Paragraph } from '@/components/Text/Paragraph'

@@ -1,17 +1,37 @@
 'use client'
+import * as z from 'zod'
 
 import { Envelope, Lock } from '@/assets/icons/phosphorIcons'
 import { Button } from '@/components/Form/Button'
 import { Checkbox } from '@/components/Form/Checkbox'
 import { TextInput } from '@/components/Form/TextInput'
 import { Paragraph } from '@/components/Text/Paragraph'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 import { useForm, Controller } from 'react-hook-form'
 
-export function FormSignIn() {
-  const { register, handleSubmit, control } = useForm()
+const formSignInSchema = z.object({
+  email: z.string().email({ message: 'Por favor digite um email válido' }),
+  password: z.string().min(6, 'A senha deve conter no mínimo 6 caracteres'),
+  remember: z.boolean(),
+})
 
-  function handleSignIn(data: any) {
+type signInUser = z.infer<typeof formSignInSchema>
+
+export function FormSignIn() {
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<signInUser>({
+    resolver: zodResolver(formSignInSchema),
+    defaultValues: {
+      remember: false,
+    },
+  })
+
+  function handleSignIn(data: signInUser) {
     console.log(data)
   }
 
@@ -33,6 +53,9 @@ export function FormSignIn() {
             {...register('email')}
           />
         </TextInput.Root>
+        <Paragraph className="text-red-500" size="sm">
+          {errors.email?.message}
+        </Paragraph>
       </label>
 
       <label htmlFor="password" className="flex flex-col gap-3">
@@ -48,19 +71,24 @@ export function FormSignIn() {
             {...register('password')}
           />
         </TextInput.Root>
+        <Paragraph className="text-red-500" size="sm">
+          {errors.password?.message}
+        </Paragraph>
       </label>
 
       <label htmlFor="remember" className="flex items-center gap-2">
         <Controller
           control={control}
           name="remember"
-          render={({ field }) => (
-            <Checkbox
-              id="remember"
-              onCheckedChange={(value: boolean) => field.onChange(value)}
-              value={field.value}
-            />
-          )}
+          render={({ field }) => {
+            return (
+              <Checkbox
+                id="remember"
+                onCheckedChange={(checked: boolean) => field.onChange(checked)}
+                checked={field.value}
+              />
+            )
+          }}
         />
         <Paragraph size="sm" className="text-gray-200">
           Lembrar de mim por 30 dias
