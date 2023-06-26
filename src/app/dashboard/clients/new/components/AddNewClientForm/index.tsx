@@ -10,12 +10,13 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { api } from '@/services/http-client/api'
 import { useRouter } from 'next/navigation'
+import { phoneNumberMask } from '@/utils/mask'
 
 const formAddNewClientSchema = z.object({
   firstName: z.string().min(3, 'O nome precisa de no mínimo 3 caractéres'),
   lastName: z.string().min(3, 'O sobrenome precisa de no mínimo 3 caractéres'),
   email: z.string().email(),
-  phoneNumber: z.string().min(14, 'Número de telefone inválido'),
+  phoneNumber: z.string().min(15, 'Número de telefone inválido'),
 })
 
 type newClient = z.infer<typeof formAddNewClientSchema>
@@ -38,10 +39,8 @@ export function AddNewClientForm() {
       firstName: data.firstName,
       lastName: data.lastName,
       email: data.email,
-      phoneNumber: data.phoneNumber,
+      phoneNumber: data.phoneNumber.replace(/\D/g, ''),
     }
-
-    console.log(newClient)
 
     try {
       const response = await api.post('/clients', newClient, {
@@ -133,9 +132,10 @@ export function AddNewClientForm() {
               <Users />
             </TextInput.Icon>
             <TextInput.Input
-              id="password"
+              id=""
               type="text"
-              placeholder="(84) 9 9982-5630"
+              placeholder="(99) 9 9999-9999"
+              onKeyUp={phoneNumberMask}
               {...register('phoneNumber')}
             />
           </TextInput.Root>
