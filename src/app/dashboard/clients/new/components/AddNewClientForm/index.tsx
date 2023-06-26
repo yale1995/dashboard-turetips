@@ -2,7 +2,7 @@
 
 import * as z from 'zod'
 
-import { Users } from '@/assets/icons/phosphorIcons'
+import { ArrowLeft, Users } from '@/assets/icons/phosphorIcons'
 import { Button } from '@/components/Form/Button'
 import { TextInput } from '@/components/Form/TextInput'
 import { Paragraph } from '@/components/Text/Paragraph'
@@ -11,6 +11,7 @@ import { useForm } from 'react-hook-form'
 import { api } from '@/services/http-client/api'
 import { useRouter } from 'next/navigation'
 import { phoneNumberMask } from '@/utils/mask'
+import Link from 'next/link'
 
 const formAddNewClientSchema = z.object({
   firstName: z.string().min(3, 'O nome precisa de no mínimo 3 caractéres'),
@@ -144,8 +145,15 @@ export function AddNewClientForm() {
           </Paragraph>
         </label>
       </div>
-      <div className="w-1/4 ml-auto py-5">
-        <Button type="submit">Cadastrar novo investidor</Button>
+      <div className="w-1/4 ml-auto py-5 flex items-center gap-2">
+        <Link
+          href="/dashboard/clients"
+          className="text-gray-100 flex items-center text-base w-full text-center justify-center gap-2 hover:text-gray-400"
+        >
+          <ArrowLeft size={18} />
+          Voltar
+        </Link>
+        <Button type="submit">Salvar!</Button>
       </div>
     </form>
   )
