@@ -18,7 +18,7 @@ const formSignInSchema = z.object({
 
 type signInUser = z.infer<typeof formSignInSchema>
 
-export function FormSignIn() {
+export function SignInForm() {
   const {
     register,
     handleSubmit,
