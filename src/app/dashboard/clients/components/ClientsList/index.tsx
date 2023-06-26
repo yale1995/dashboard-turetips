@@ -14,7 +14,13 @@ type Client = {
 }
 
 export async function ClientsList() {
-  const response = await api.get('/clients')
+  const response = await api.get('/clients', {
+    headers: {
+      Authorization:
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6eyJpZCI6MiwibmFtZSI6IlVzZXIiLCJfX2VudGl0eSI6IlJvbGUifSwiaWF0IjoxNjg3ODAwMjQ2LCJleHAiOjE2ODc4ODY2NDZ9.O0DR06hRRWgDRn9dUNsZZU5iW-JSLgJd7ytq-kvv9ds',
+    },
+  })
+
   const clients: Client[] = response.data.data
   return (
     <table className="w-full border-collapse border-spacing-x-0 border-spacing-y-2 mt-6 bg-gray-800">
@@ -36,7 +42,7 @@ export async function ClientsList() {
         </tr>
       </thead>
       <tbody>
-        {clients.map((client) => (
+        {clients?.map((client) => (
           <tr key={client.id} className="border-t-gray-900 border-t-4">
             <td className="py-5 px-8 text-base text-left text-gray-300">
               {client.firstName}
