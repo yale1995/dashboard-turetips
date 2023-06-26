@@ -1,9 +1,13 @@
-import { MagnifyingGlass } from '@/assets/icons/phosphorIcons'
+'use client'
+import * as Dialog from '@radix-ui/react-dialog'
+
+import { MagnifyingGlass, Users, UserList } from '@/assets/icons/phosphorIcons'
 import { TextInput } from '@/components/Form/TextInput'
 import { Avatar } from '@/components/Header/Avatar'
 import { Logo } from '@/components/Logo'
 import { Heading } from '@/components/Text/Heading'
 import { Paragraph } from '@/components/Text/Paragraph'
+import { NewAccountModal } from './NewAccountModal'
 
 export function Header() {
   return (
@@ -24,6 +28,25 @@ export function Header() {
         </div>
 
         <div className="flex items-center gap-4">
+          <div className="flex gap-4 border-r-2 pr-10">
+            <Dialog.Root>
+              <Dialog.Trigger>
+                <Users
+                  size={24}
+                  className="text-gray-300 hover:text-indigo-500"
+                />
+              </Dialog.Trigger>
+
+              <NewAccountModal />
+            </Dialog.Root>
+
+            <button>
+              <UserList
+                size={24}
+                className="text-gray-300 hover:text-indigo-500"
+              />
+            </button>
+          </div>
           <div>
             <Heading
               size="sm"

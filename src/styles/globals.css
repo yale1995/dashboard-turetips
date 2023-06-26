@@ -20,3 +20,20 @@ body {
 body, input, text-area, button {
     font: 400 1rem Roboto, sans-serif;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+[data-placeholder] {
+    @apply text-gray-400;
+  }
+
+  [data-highlighted]	
+ {
+    @apply shadow-none;
+    @apply bg-gray-400;
+    @apply rounded-md
+  }
