@@ -19,7 +19,10 @@ export function Header() {
           </div>
           <div className="max-w-lg w-full">
             <TextInput.Root>
-              <TextInput.Input placeholder="O que você está buscando?" />
+              <TextInput.Input
+                placeholder="O que você está buscando?"
+                className="bg-transparent flex-1 text-gray-100 text-sm placeholder:text-gray-400 outline-none focus:shadow-none"
+              />
               <TextInput.Icon>
                 <MagnifyingGlass />
               </TextInput.Icon>
