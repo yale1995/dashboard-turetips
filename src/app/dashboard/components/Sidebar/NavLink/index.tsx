@@ -16,8 +16,8 @@ export function NavLink({ children, pathname }: NavLinkProps) {
   return (
     <Paragraph
       asChild
-      className={` font-bold ${
-        !activedLink ? 'text-gray-300' : 'text-indigo-500'
+      className={`font-bold  focus:shadow-none ${
+        !activedLink ? 'text-gray-300 hover:text-gray-400' : 'text-indigo-500 '
       }`}
       size="lg"
     >
