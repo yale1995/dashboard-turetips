@@ -10,4 +10,5 @@ export {
   CaretDown,
   Check,
   TrendUp,
+  ArrowLeft,
 } from 'phosphor-react'
