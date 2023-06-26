@@ -1,7 +1,25 @@
-import { Heading } from '@/components/Text/Heading'
 import { Button } from '@/components/Form/Button'
+import { Heading } from '@/components/Text/Heading'
+import { api } from '@/services/http-client/api'
+import { dateFormatter, phoneFormatter } from '@/utils/formatter'
+import Link from 'next/link'
 
-export default function ClientList() {
+type User = {
+  id: number
+  firstName: string
+  lastName: string
+  email: string
+  phoneNumber: string
+  createdAt: string
+  updatedAt: string
+  deletedAt: null | string
+  __entity: string
+}
+
+export default async function ClientList() {
+  const response = await api.get('/clients')
+  const clients: User[] = response.data.data
+
   return (
     <div>
       <Heading size="lg">Meus clientes</Heading>
@@ -9,112 +27,51 @@ export default function ClientList() {
         <table className="w-full border-collapse border-spacing-x-0 border-spacing-y-2 mt-6 bg-gray-800">
           <thead>
             <tr className="bg-gray-700">
-              <th className="py-5 px-8 w-1/ text-xs text-left text-gray-500 rounded-tl-md">
-                NOME DO CLIENTE
+              <th className="py-5 px-8 text-xs text-left text-gray-500 rounded-tl-md">
+                NOME
               </th>
               <th className="py-5 px-8 text-xs text-left text-gray-500">
-                LOGIN
+                SOBRENOME
               </th>
               <th className="py-5 px-8 text-xs text-left text-gray-500">
-                SENHA
+                EMAIL
               </th>
               <th className="py-5 px-8 text-xs text-left text-gray-500">
-                SALDO INICIAL
+                TELEFONE
               </th>
               <th className="py-5 px-8 text-xs text-left text-gray-500">
-                SALDO FINAL
-              </th>
-              <th className="py-5 px-8 text-xs text-center text-gray-500 rounded-tr-md">
-                STATUS
+                DATA CADASTRO
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr className="border-t-gray-900 border-t-4">
-              <td className="py-5 px-8 w-1/3 text-base text-left text-gray-300">
-                Caio Rodrigo
-              </td>
-              <td className="py-5 px-8 text-base text-left text-gray-300">
-                teste123
-              </td>
-              <td className="py-5 px-8 text-base text-left text-gray-300">
-                senhas123
-              </td>
-              <td className="py-5 px-8 text-base text-left text-gray-300">
-                R$ 12.000
-              </td>
-              <td className="py-5 px-8 text-base text-left text-gray-300">
-                R$ 12.000
-              </td>
-              <td className="py-5 px-8 text-base text-left text-gray-300">
-                <span className="flex items-center justify-center gap-2 before:w-2 before:h-2 before:bg-red-500 before:rounded-full" />
-              </td>
-            </tr>
-
-            <tr className="border-t-gray-900 border-t-4">
-              <td className="py-5 px-8 w-1/3 text-base text-left text-gray-300">
-                Caio Rodrigo
-              </td>
-              <td className="py-5 px-8 text-base text-left text-gray-300">
-                teste123
-              </td>
-              <td className="py-5 px-8 text-base text-left text-gray-300">
-                senhas123
-              </td>
-              <td className="py-5 px-8 text-base text-left text-gray-300">
-                R$ 12.000
-              </td>
-              <td className="py-5 px-8 text-base text-left text-gray-300">
-                R$ 12.000
-              </td>
-              <td className="py-5 px-8 text-base text-left text-gray-300">
-                <span className="flex items-center justify-center gap-2 before:w-2 before:h-2 before:bg-red-500 before:rounded-full" />
-              </td>
-            </tr>
-            <tr className="border-t-gray-900 border-t-4">
-              <td className="py-5 px-8 w-1/3 text-base text-left text-gray-300">
-                Caio Rodrigo
-              </td>
-              <td className="py-5 px-8 text-base text-left text-gray-300">
-                teste123
-              </td>
-              <td className="py-5 px-8 text-base text-left text-gray-300">
-                senhas123
-              </td>
-              <td className="py-5 px-8 text-base text-left text-gray-300">
-                R$ 12.000
-              </td>
-              <td className="py-5 px-8 text-base text-left text-gray-300">
-                R$ 12.000
-              </td>
-              <td className="py-5 px-8 text-base text-left text-gray-300">
-                <span className="flex items-center justify-center gap-2 before:w-2 before:h-2 before:bg-red-500 before:rounded-full" />
-              </td>
-            </tr>
-            <tr className="border-t-gray-900 border-t-4">
-              <td className="py-5 px-8 w-1/3 text-base text-left text-gray-300">
-                Caio Rodrigo
-              </td>
-              <td className="py-5 px-8 text-base text-left text-gray-300">
-                teste123
-              </td>
-              <td className="py-5 px-8 text-base text-left text-gray-300">
-                senhas123
-              </td>
-              <td className="py-5 px-8 text-base text-left text-gray-300">
-                R$ 12.000
-              </td>
-              <td className="py-5 px-8 text-base text-left text-gray-300">
-                R$ 12.000
-              </td>
-              <td className="py-5 px-8 text-base text-left text-gray-300">
-                <span className="flex items-center justify-center gap-2 before:w-2 before:h-2 before:bg-red-500 before:rounded-full" />
-              </td>
-            </tr>
+            {clients.map((client) => (
+              <tr key={client.id} className="border-t-gray-900 border-t-4">
+                <td className="py-5 px-8 text-base text-left text-gray-300">
+                  {client.firstName}
+                </td>
+                <td className="py-5 px-8 text-base text-left text-gray-300">
+                  {client.lastName}
+                </td>
+                <td className="py-5 px-8 text-base text-left text-gray-300">
+                  {client.email}
+                </td>
+                <td className="py-5 px-8 text-base text-left text-gray-300">
+                  {phoneFormatter(client.phoneNumber)}
+                </td>
+                <td className="py-5 px-8 text-base text-left text-gray-300">
+                  {dateFormatter.format(new Date(client.createdAt))}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
-        <div className="max-w-xs py-5 ml-auto">
-          <Button>Cadastrar Novo Cliente</Button>
+        <div className="w-56 py-5 ml-auto">
+          <Button asChild>
+            <Link href="/dashboard/clients/new" className="block text-center">
+              Cadastrar Novo Cliente
+            </Link>
+          </Button>
         </div>
       </main>
     </div>
