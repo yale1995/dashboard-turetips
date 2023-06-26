@@ -47,7 +47,7 @@ export function AddNewClientForm() {
       const response = await api.post('/clients', newClient, {
         headers: {
           Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6eyJpZCI6MiwibmFtZSI6IlVzZXIiLCJfX2VudGl0eSI6IlJvbGUifSwiaWF0IjoxNjg3ODAxMzI0LCJleHAiOjE2ODc4ODc3MjR9.KvzDBaj_p6j_XiyWQ0VRjXHxDkb0dSOu43Qoo7vUhQM',
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6eyJpZCI6MiwibmFtZSI6IlVzZXIiLCJfX2VudGl0eSI6IlJvbGUifSwiaWF0IjoxNjg3ODE4MzI5LCJleHAiOjE2ODc5MDQ3Mjl9.up_U12I41d4gHbfQN0b4seIULbAKzoCWuj97ro2654I',
         },
       })
 
