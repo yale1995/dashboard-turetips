@@ -1,6 +1,6 @@
-import { ReactNode, createContext, useState } from 'react'
+import { ReactNode, createContext, useContext, useState } from 'react'
 import { destroyCookie, setCookie } from 'nookies'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { api } from '@/services/http-client/api'
 
 type SignInCredentials = {
@@ -43,11 +43,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }
 
   async function signIn({ email, password }: SignInCredentials) {
+    console.log(email, password)
     try {
       const response = await api.post('auth/email/login', {
         email,
         password,
       })
+
+      console.log(response)
 
       const { token, user, status } = response.data
 
@@ -80,4 +83,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
       {children}
     </AuthContext.Provider>
   )
+}
+
+export function useAuth() {
+  const context = useContext(AuthContext)
+  return context
 }
