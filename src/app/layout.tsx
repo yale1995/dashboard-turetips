@@ -2,7 +2,7 @@ import '../styles/globals.css'
 import React from 'react'
 
 import { Roboto } from 'next/font/google'
-
+import { Provider } from '@/hooks/Provider'
 const roboto = Roboto({ subsets: ['latin'], weight: ['400', '700'] })
 
 export const metadata = {
@@ -17,7 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className={roboto.className}>{children}</body>
+      <Provider>
+        <body className={roboto.className}>{children}</body>
+      </Provider>
     </html>
   )
 }
