@@ -9,6 +9,7 @@ import { Paragraph } from '@/components/Text/Paragraph'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import { useForm, Controller } from 'react-hook-form'
+import { useAuth } from '@/hooks/useAuth'
 
 const formSignInSchema = z.object({
   email: z.string().email({ message: 'Por favor digite um email válido' }),
@@ -19,6 +20,7 @@ const formSignInSchema = z.object({
 type signInUser = z.infer<typeof formSignInSchema>
 
 export function SignInForm() {
+  const { signIn } = useAuth()
   const {
     register,
     handleSubmit,
@@ -32,7 +34,10 @@ export function SignInForm() {
   })
 
   function handleSignIn(data: signInUser) {
-    console.log(data)
+    signIn({
+      email: data.email,
+      password: data.password,
+    })
   }
 
   return (
