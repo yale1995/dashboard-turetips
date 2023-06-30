@@ -18,9 +18,7 @@ export default async function ClientList() {
         </div>
       </div>
 
-      <main className="w-full mx-auto text-gray-100">
-        <ClientsList />
-      </main>
+      <ClientsList />
     </div>
   )
 }
