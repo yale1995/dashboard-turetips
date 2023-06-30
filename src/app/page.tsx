@@ -1,8 +1,17 @@
+import { cookies } from 'next/headers'
 import { Logo } from '../components/Logo'
 import { Paragraph } from '../components/Text/Paragraph'
 import { SignInForm } from './components/SignInForm'
+import { redirect } from 'next/navigation'
 
 export default function SignIn() {
+  const userCookies = cookies()
+  const token = userCookies.get('auth.token')
+
+  if (token) {
+    redirect('/dashboard')
+  }
+
   return (
     <div className="w-screen h-screen flex-col bg-gray-900 flex items-center justify-center text-gray-100 px-4">
       <header className="flex flex-col items-center">
