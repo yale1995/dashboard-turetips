@@ -118,8 +118,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
             role: role.name,
             status: status.name,
           })
-
-          router.push('/dashboard')
         })
         .catch(() => {
           signOut()
