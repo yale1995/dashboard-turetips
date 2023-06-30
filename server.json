@@ -1,29 +1,44 @@
 {
-    "clients": {
-        "data": [
-            {
-                "id": 1,
-                "firstName": "Keko",
-                "lastName": "Nunes",
-                "email": "keko@gmail.com",
-                "phoneNumber": "+5584999999999",
-                "createdAt": "2023-06-26T13:59:56.266Z",
-                "updatedAt": "2023-06-26T13:59:56.266Z",
-                "deletedAt": null,
-                "__entity": "Client"
-            },
-            {
-                "id": 2,
-                "firstName": "Matheus",
-                "lastName": "Lewandovsk",
-                "email": "lewandvsk@gmail.com",
-                "phoneNumber": "+5584999999999",
-                "createdAt": "2023-06-26T14:03:30.116Z",
-                "updatedAt": "2023-06-26T14:03:30.116Z",
-                "deletedAt": null,
-                "__entity": "Client"
-            }
-        ],
-        "hasNextPage": false
+  "clients": [
+    {
+      "id": 1,
+      "firstName": "Matheus",
+      "lastName": "Keko",
+      "email": "keko@gmail.com",
+      "phoneNumber": "84999999999",
+      "createdAt": "2023-06-26T13:59:56.266Z",
+      "updatedAt": "2023-06-26T13:59:56.266Z",
+      "deletedAt": null
+    },
+    {
+      "id": 2,
+      "firstName": "Matheus",
+      "lastName": "Lewandovsk",
+      "email": "lewandvsk@gmail.com",
+      "phoneNumber": "84999999999",
+      "createdAt": "2023-06-26T14:03:30.116Z",
+      "updatedAt": "2023-06-26T14:03:30.116Z",
+      "deletedAt": null
+    },
+    {
+      "firstName": "Yale",
+      "lastName": "Henrique",
+      "email": "yale850@gmail.com",
+      "phoneNumber": "84999825630",
+      "createdAt": "2023-06-30T01:11:05.268Z",
+      "updatedAt": "2023-06-30T01:11:05.268Z",
+      "deletedAt": null,
+      "id": 3
+    },
+    {
+      "firstName": "Yure",
+      "lastName": "Araujo",
+      "email": "yure@gmail.com",
+      "phoneNumber": "84999992839",
+      "createdAt": "2023-06-30T01:11:42.283Z",
+      "updatedAt": "2023-06-30T01:11:42.283Z",
+      "deletedAt": null,
+      "id": 4
     }
-  }
+  ]
+}
