@@ -41,6 +41,7 @@ const TextInputBase: ForwardRefRenderFunction<
 > = (props, ref) => {
   return (
     <input
+      autoComplete="off"
       ref={ref}
       className={clsx(
         'bg-transparent flex-1 text-gray-100 text-xs placeholder:text-gray-400 outline-none focus:shadow-none',
