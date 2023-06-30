@@ -9,7 +9,7 @@ import { TextInput } from '@/components/Form/TextInput'
 import { Paragraph } from '@/components/Text/Paragraph'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { api } from '@/services/http-client/api'
+import { api } from '@/services/http-client/apiClient'
 import { useRouter } from 'next/navigation'
 import { phoneNumberMask } from '@/utils/mask'
 
@@ -41,9 +41,6 @@ export function AddNewClientForm() {
       lastName: data.lastName,
       email: data.email,
       phoneNumber: data.phoneNumber.replace(/\D/g, ''),
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      deletedAt: null,
     }
 
     try {
@@ -53,7 +50,7 @@ export function AddNewClientForm() {
         router.push('/dashboard/clients')
       }
     } catch (Error: any) {
-      window.alert(Error.message)
+      console.log(Error)
     }
   }
 
