@@ -1,6 +1,7 @@
 'use client'
 
 import * as z from 'zod'
+import Link from 'next/link'
 
 import { ArrowLeft, Users } from '@/assets/icons/phosphorIcons'
 import { Button } from '@/components/Form/Button'
@@ -11,7 +12,6 @@ import { useForm } from 'react-hook-form'
 import { api } from '@/services/http-client/api'
 import { useRouter } from 'next/navigation'
 import { phoneNumberMask } from '@/utils/mask'
-import Link from 'next/link'
 
 const formAddNewClientSchema = z.object({
   firstName: z.string().min(3, 'O nome precisa de no mínimo 3 caractéres'),
@@ -41,15 +41,13 @@ export function AddNewClientForm() {
       lastName: data.lastName,
       email: data.email,
       phoneNumber: data.phoneNumber.replace(/\D/g, ''),
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      deletedAt: null,
     }
 
     try {
-      const response = await api.post('/clients', newClient, {
-        headers: {
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6eyJpZCI6MiwibmFtZSI6IlVzZXIiLCJfX2VudGl0eSI6IlJvbGUifSwiaWF0IjoxNjg3ODE4MzI5LCJleHAiOjE2ODc5MDQ3Mjl9.up_U12I41d4gHbfQN0b4seIULbAKzoCWuj97ro2654I',
-        },
-      })
+      const response = await api.post('/clients', newClient)
 
       if (response.status === 201) {
         router.push('/dashboard/clients')
