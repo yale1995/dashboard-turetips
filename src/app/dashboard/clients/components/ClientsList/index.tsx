@@ -1,8 +1,9 @@
 'use client'
 
 import { dateFormatter, phoneFormatter } from '@/utils/formatter'
-import { api } from '@/services/http-client/api'
+import { api } from '@/services/http-client/apiClient'
 import { useEffect, useState } from 'react'
+import { useAuth } from '@/hooks/useAuth'
 
 type Client = {
   id: number
@@ -17,9 +18,32 @@ type Client = {
 
 export function ClientsList() {
   const [clients, setClients] = useState<Client[]>([])
+  const { signOut } = useAuth()
 
   useEffect(() => {
-    api.get('/clients').then((response) => setClients(response.data))
+    try {
+      api.get('clients', { params: { page: 1, limit: 6 } }).then((response) => {
+        // eslint-disable-next-line array-callback-return
+        response.data.data.map((client: Client) => {
+          setClients((state) => [
+            ...state,
+            {
+              id: client.id,
+              firstName: client.firstName,
+              lastName: client.lastName,
+              email: client.email,
+              createdAt: client.createdAt,
+              updatedAt: client.updatedAt,
+              phoneNumber: client.phoneNumber,
+              deletedAt: client.deletedAt,
+            },
+          ])
+        })
+      })
+    } catch (Error) {
+      console.log(Error)
+      signOut()
+    }
   }, [])
 
   return (
