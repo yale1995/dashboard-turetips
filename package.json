@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "dev:server": "json-server --watch server.json -d 500 --port 8000"
+    "dev:server": "json-server --watch db.json -d 500 --port 8000"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.1.1",
@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "@rocketseat/eslint-config": "^1.2.0",
-    "eslint": "^8.43.0"
+    "eslint": "^8.43.0",
+    "json-server-auth": "^2.1.0"
   }
 }
