@@ -1,7 +1,14 @@
-import { ReactNode, createContext, useContext, useState } from 'react'
-import { destroyCookie, setCookie } from 'nookies'
+import { destroyCookie, parseCookies, setCookie } from 'nookies'
 import { useRouter } from 'next/navigation'
-import { api } from '@/services/http-client/api'
+import { api } from '@/services/http-client/apiClient'
+
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 
 type SignInCredentials = {
   email: string
@@ -12,10 +19,11 @@ type User = {
   id: number
   firstName: string
   lastName: string
+  email: string
   createdAt: string
-  photo: string | null
-  status: { name: 'active' | 'inactive' }
-  role: { name: string }
+  photo: string | undefined
+  status: 'active' | 'inactive'
+  role: string
 }
 
 type AuthContextData = {
@@ -33,29 +41,28 @@ interface AuthProviderProps {
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [currentUser, setCurrentUser] = useState<User | null>(null)
+
   const router = useRouter()
 
   const isAuthenticated = !!currentUser
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   function signOut() {
     destroyCookie(undefined, 'auth.token')
     router.push('/')
   }
 
   async function signIn({ email, password }: SignInCredentials) {
-    console.log(email, password)
     try {
       const response = await api.post('auth/email/login', {
         email,
         password,
       })
 
-      console.log(response)
-
-      const { token, user, status } = response.data
+      const { token, user } = response.data
 
       setCookie(undefined, 'auth.token', token, {
-        maxAge: 60 * 60 * 24, // 24h
+        maxAge: 60 * 60 * 1, // 1h
         path: '/',
       })
 
@@ -65,20 +72,67 @@ export function AuthProvider({ children }: AuthProviderProps) {
         lastName: user.lastName,
         photo: user.photo,
         createdAt: user.createdAt,
-        role: { name: user.role.name },
-        status: { name: status.name },
+        role: user.role.name,
+        status: user.status.name,
+        email: user.email,
       })
 
       api.defaults.headers.Authorization = `Bearer ${token}`
       router.push('/dashboard')
     } catch (Error) {
       console.log(Error)
+      window.alert(
+        'Nosso aplicação está em manutenção tente novamente mais tarde.',
+      )
     }
   }
 
+  useEffect(() => {
+    const cookies = parseCookies()
+    const token = cookies['auth.token']
+
+    api.defaults.headers.Authorization = `Bearer ${token}`
+
+    if (token) {
+      api
+        .get('auth/me')
+        .then((response) => {
+          const {
+            id,
+            firstName,
+            lastName,
+            email,
+            photo,
+            createdAt,
+            role,
+            status,
+          } = response.data
+
+          setCurrentUser({
+            id,
+            firstName,
+            lastName,
+            email,
+            photo,
+            createdAt,
+            role: role.name,
+            status: status.name,
+          })
+        })
+        .catch(() => {
+          signOut()
+        })
+    }
+  }, [])
+
   return (
     <AuthContext.Provider
-      value={{ signOut, signIn, currentUser, isAuthenticated }}
+      value={{
+        signOut,
+        signIn,
+        currentUser,
+        isAuthenticated,
+      }}
     >
       {children}
     </AuthContext.Provider>

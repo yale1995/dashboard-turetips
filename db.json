@@ -39,6 +39,45 @@
       "updatedAt": "2023-06-30T01:11:42.283Z",
       "deletedAt": null,
       "id": 4
+    },
+    {
+      "firstName": "Maria",
+      "lastName": "Luiza",
+      "email": "ml.dearaujo@gmail.com",
+      "phoneNumber": "84991737373",
+      "createdAt": "2023-06-30T01:28:12.712Z",
+      "updatedAt": "2023-06-30T01:28:12.712Z",
+      "deletedAt": null,
+      "id": 5
+    },
+    {
+      "id": 6,
+      "firstName": "Matheus",
+      "lastName": "Keko",
+      "email": "keko@gmail.com",
+      "phoneNumber": "84999999999",
+      "createdAt": "2023-06-26T13:59:56.266Z",
+      "updatedAt": "2023-06-26T13:59:56.266Z",
+      "deletedAt": null
+    },
+    {
+      "id": 7,
+      "firstName": "Matheus",
+      "lastName": "Lewandovsk",
+      "email": "lewandvsk@gmail.com",
+      "phoneNumber": "84999999999",
+      "createdAt": "2023-06-26T14:03:30.116Z",
+      "updatedAt": "2023-06-26T14:03:30.116Z",
+      "deletedAt": null
     }
+  ],
+  "users": [
+    {
+      "accessToken": "xllptb13",
+      "user": {
+        "id": 1,
+        "email": "yale850@gmail.com"
+      }
+    }   
   ]
 }
